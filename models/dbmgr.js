@@ -14,7 +14,7 @@ if (!fs.existsSync(dbFile)) {
     })
 }
 
-const sqlite = require('better-sqlite3-with-prebuilds')
+const sqlite = require('better-sqlite3')
 const db = new sqlite(dbFile)
 
 db.prepare('CREATE TABLE IF NOT EXISTS test (name TEXT)').run();
