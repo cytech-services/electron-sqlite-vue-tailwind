@@ -1,27 +1,26 @@
-
-const fs = require('fs')
 const path = require('path')
-
-const dbFile = path.join(__dirname, '../mysqlite.db')
-
-if (!fs.existsSync(dbFile)) {
-    fs.writeFile(dbFile, '', (err) => {
-        if (err)
-            console.log(err);
-        else {
-            console.log("Database file created successfully!");
-        }
-    })
-}
-
 const sqlite = require('better-sqlite3')
-const db = new sqlite(dbFile)
 
-db.prepare('CREATE TABLE IF NOT EXISTS test (name TEXT)').run();
+let userDataPath, dbFile, db
 
-var stmt = db.prepare("INSERT INTO test VALUES (?)");
-for (var i = 0; i < 10; i++) {
-    stmt.run("Ipsum " + i);
+exports.init = () => {
+    console.log(path.join(userDataPath, 'mysqlite.db'))
+    dbFile = path.join(userDataPath, 'mysqlite.db')
+    db = new sqlite(dbFile)
+
+    db.prepare('CREATE TABLE IF NOT EXISTS test (name TEXT)').run();
+
+    var stmt = db.prepare("INSERT INTO test VALUES (?)");
+    for (var i = 0; i < 10; i++) {
+        stmt.run("Ipsum " + i);
+    }
+
+    exports.db = db
 }
 
-exports.db = db
+exports.setUserDataPath = (result) => {
+    console.log(result)
+    userDataPath = result
+    exports.userDataPath = userDataPath
+}
+
