@@ -1,5 +1,5 @@
 {
-  "name": "vue-desktop",
+  "name": "electron-sqlite-vue-tailwind",
   "version": "0.1.0",
   "private": true,
   "scripts": {
