@@ -19,9 +19,9 @@ const db = new sqlite(dbFile)
 
 db.prepare('CREATE TABLE IF NOT EXISTS test (name TEXT)').run();
 
-// var stmt = db.prepare("INSERT INTO test VALUES (?)");
-// for (var i = 0; i < 100; i++) {
-//     stmt.run("Ipsum " + i);
-// }
+var stmt = db.prepare("INSERT INTO test VALUES (?)");
+for (var i = 0; i < 10; i++) {
+    stmt.run("Ipsum " + i);
+}
 
 exports.db = db
