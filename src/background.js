@@ -14,7 +14,7 @@ process.on('unhandledRejection', (error) => {
 	console.error(error)
 })
 
-ipcMain.handle('check-db-exists', (event) => {
+ipcMain.handle('check-db-exists', () => {
 	return path.join(app.getPath('userData'), './mysqlite.db')
 })
 

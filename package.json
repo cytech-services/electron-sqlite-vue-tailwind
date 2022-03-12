@@ -12,6 +12,7 @@
     "postuninstall": "electron-builder install-app-deps",
     "rebuild": "electron-rebuild -f -w better-sqlite3"
   },
+  "main": "background.js",
   "dependencies": {
     "autoprefixer": "^10",
     "better-sqlite3": "^7.5.0",
