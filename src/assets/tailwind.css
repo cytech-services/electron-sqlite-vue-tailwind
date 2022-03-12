@@ -1,5 +1,8 @@
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
+
+.titleBar {
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
+}

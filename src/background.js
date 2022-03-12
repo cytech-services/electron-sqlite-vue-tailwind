@@ -10,6 +10,10 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
+process.on('unhandledRejection', (error) => {
+	console.error(error)
+})
+
 ipcMain.handle('check-db-exists', (event) => {
 	return path.join(app.getPath('userData'), './mysqlite.db')
 })
@@ -22,18 +26,17 @@ protocol.registerSchemesAsPrivileged([
 async function createWindow() {
 	// Create the browser window.
 	const win = new BrowserWindow({
+		frame: false,
 		width: 1280,
 		height: 1000,
+		minWidth: 1280,
+		minHeight: 1000,
 		x: 0,
 		y: 0,
 		webPreferences: {
-			// enableRemoteModule: true,
-			// Use pluginOptions.nodeIntegration, leave this alone
-			// See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-			nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
-			contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
-
 			preload: path.join(__dirname, './preload.js'),
+			nodeIntegration: true,
+			contextIsolation: true,
 		},
 	})
 

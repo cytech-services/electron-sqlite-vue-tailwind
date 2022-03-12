@@ -1,22 +1,47 @@
 <template>
-    <img alt="Vue logo" src="./assets/logo.png" class="mx-auto" />
+    <MainLayout>
+        <img alt="Vue logo" src="./assets/logo.png" class="mx-auto" />
 
-    <div id="names">
-        <!--  -->
-    </div>
+        <div id="names">
+            <!--  -->
+        </div>
 
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+        <HelloWorld msg="Welcome to Your Vue.js App" />
+    </MainLayout>
 </template>
 
 <script>
+import MainLayout from '@/layouts/MainLayout.vue'
 import HelloWorld from './components/HelloWorld.vue'
 
 export default {
     name: 'App',
     components: {
+        MainLayout,
         HelloWorld,
     },
 }
+
+// document.addEventListener('DOMContentLoaded', async () => {
+window.api.loadDatabase().then((result) => {
+    console.log(result)
+
+    // window.api.initDb(result)
+
+    let names = window.api.getNames(result)
+    console.log(names)
+
+    if (names) {
+        let divNames = document.getElementById('names')
+        let namesArray = []
+        names.forEach((name) => {
+            namesArray.push(name.name)
+        })
+        let nameString = namesArray.join('<br />')
+        divNames.innerHTML = nameString
+    }
+})
+// })
 </script>
 
 <style>
@@ -26,6 +51,5 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
 }
 </style>
