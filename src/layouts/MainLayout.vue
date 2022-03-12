@@ -2,7 +2,7 @@
     <TitleBar />
 
     <!-- Main Content -->
-    <main class="h-main overflow-y-scroll">
+    <main class="h-[calc(100vh-3rem)] overflow-y-scroll">
         <slot />
     </main>
 

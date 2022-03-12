@@ -1,8 +1,8 @@
 <template>
-    <div class="topBar h-12 flex flex-row bg-gray-700">
-        <div class="">Hamburger</div>
+    <header class="topBar h-12 flex flex-row bg-gray-700 text-white" style="-webkit-app-region: drag">
+        <!-- <div class="">Hamburger</div> -->
         <div class="">Logo</div>
         <div class="titleBar grow">TITLE</div>
         <div class="">Buttons</div>
-    </div>
+    </header>
 </template>

@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.titleBar {
+/* .titleBar {
     -webkit-user-select: none;
     -webkit-app-region: drag;
-}
+} */
