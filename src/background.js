@@ -49,7 +49,21 @@ async function createWindow() {
 		// Load the index.html when not in development
 		win.loadURL('app://./index.html')
 	}
+
+	ipcMain.on('minimizeWindow', () => {
+		win.minimize()
+	})
+	ipcMain.on('maximizeWindow', () => {
+		win.maximize()
+	})
+	ipcMain.on('restoreWindow', () => {
+		win.restore()
+	})
+	ipcMain.on('closeApplication', () => {
+		win.close()
+	})
 }
+
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {

@@ -6,24 +6,24 @@
             <!--  -->
         </div>
 
-        <HelloWorld msg="Welcome to Your Vue.js App" />
+        <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
     </MainLayout>
 </template>
 
 <script>
 import MainLayout from '@/layouts/MainLayout.vue'
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
 import { onMounted } from '@vue/runtime-core'
 
 export default {
     name: 'App',
     components: {
         MainLayout,
-        HelloWorld,
+        // HelloWorld,
     },
     setup() {
         onMounted(() => {
-            console.log('mounted')
+            // console.log(window.ipcRenderer)
             // document.addEventListener('DOMContentLoaded', async () => {
             window.api.loadDatabase().then((result) => {
                 console.log(result)

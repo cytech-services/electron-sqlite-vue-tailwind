@@ -2,7 +2,7 @@
     <TitleBar />
 
     <!-- Main Content -->
-    <main class="h-[calc(100vh-3rem)] overflow-y-scroll">
+    <main class="h-[calc(100vh-2.5rem)] overflow-y-scroll">
         <slot />
     </main>
 
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, onMounted } from 'vue'
 import TitleBar from '@/components/Header/TitleBar.vue'
 
 export default defineComponent({
@@ -18,6 +18,10 @@ export default defineComponent({
     components: {
         TitleBar,
     },
-    setup() {},
+    setup() {
+        onMounted(() => {
+            // console.log(window.ipcRenderer)
+        })
+    },
 })
 </script>
