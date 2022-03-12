@@ -11,7 +11,7 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 ipcMain.handle('check-db-exists', (event) => {
-	return path.join(app.getAppPath('userData'), 'mysqlite.db')
+	return path.join(app.getPath('userData'), './mysqlite.db')
 })
 
 // Scheme must be registered before the app is ready
