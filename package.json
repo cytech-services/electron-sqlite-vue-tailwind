@@ -1,6 +1,6 @@
 {
   "name": "electron-sqlite-vue-tailwind",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -14,8 +14,8 @@
   },
   "main": "background.js",
   "dependencies": {
-    "@headlessui/react": "^1.5.0",
-    "@heroicons/react": "^1.0.6",
+    "@headlessui/vue": "^1.5.0",
+    "@heroicons/vue": "^1.0.6",
     "autoprefixer": "^10",
     "better-sqlite3": "^7.5.0",
     "core-js": "^3.8.3",
