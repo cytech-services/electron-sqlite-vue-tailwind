@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     window.api.loadDatabase().then((result) => {
-        // console.log(result)
+        console.log(result)
 
         // window.api.initDb(result)
 
