@@ -23,13 +23,16 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
             ipcRenderer.send(channel)
         }
     },
-    // receive: (channel, func) => {
-    //     let validChannels = ['fromMain']
-    //     if (validChannels.includes(channel)) {
-    //         // Deliberately strip event as it includes `sender`
-    //         ipcRenderer.on(channel, (event, ...args) => func(...args))
-    //     }
-    // }
+    receive: (channel, func) => {
+        let validChannels = [
+            'isMaximized',
+            'isRestored',
+        ]
+        if (validChannels.includes(channel)) {
+            // Deliberately strip event as it includes `sender`
+            ipcRenderer.on(channel, (event, ...args) => func(...args))
+        }
+    }
 })
 
 contextBridge.exposeInMainWorld('api', {

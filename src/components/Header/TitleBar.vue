@@ -124,6 +124,7 @@ export default {
             console.log(window.ipcRenderer)
         })
 
+        // Windows control button functionality
         let minimize = () => {
             window.ipcRenderer.send('minimizeWindow')
         }
@@ -138,6 +139,16 @@ export default {
         let close = () => {
             window.ipcRenderer.send('closeApplication')
         }
+
+        // Update the maximize / restore button when double clicking
+        // the titlebar to maximize or restore the window, or when using
+        // the window snap feature
+        window.ipcRenderer.receive('isMaximized', () => {
+            fullScreen.value = true
+        })
+        window.ipcRenderer.receive('isRestored', () => {
+            fullScreen.value = false
+        })
 
         return {
             fullScreen,

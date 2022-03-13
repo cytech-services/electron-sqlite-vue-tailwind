@@ -50,18 +50,23 @@ async function createWindow() {
 		win.loadURL('app://./index.html')
 	}
 
-	ipcMain.on('minimizeWindow', () => {
-		win.minimize()
-	})
-	ipcMain.on('maximizeWindow', () => {
-		win.maximize()
-	})
-	ipcMain.on('restoreWindow', () => {
-		win.restore()
-	})
-	ipcMain.on('closeApplication', () => {
-		win.close()
-	})
+	// Listen for windows control button events and
+	// apply the necessary action
+	ipcMain.on('minimizeWindow', () => { win.minimize() })
+	ipcMain.on('maximizeWindow', () => { win.maximize() })
+	ipcMain.on('restoreWindow', () => { win.restore() })
+	ipcMain.on('closeApplication', () => { win.close() })
+
+	// Detect windows resize events and inform the
+	// titlebar which icon and functionality it should
+	// have: maximize or restore
+	win.on('resize', function () {
+		if (win.isMaximized()) {
+			win.webContents.send('isMaximized')
+		} else {
+			win.webContents.send('isRestored')
+		}
+	});
 }
 
 
