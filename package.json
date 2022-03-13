@@ -1,6 +1,8 @@
 {
   "name": "electron-sqlite-vue-tailwind",
-  "version": "0.2.2",
+  "author": "Christopher Graham",
+  "description": "A base template with Electron Sqlite Vue and Tailwind",
+  "version": "0.2.3",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
