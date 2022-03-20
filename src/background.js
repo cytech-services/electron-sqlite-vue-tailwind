@@ -1,5 +1,6 @@
 'use strict'
 
+const fs = require('fs');
 const path = require('path')
 
 import { BrowserWindow, app, ipcMain, protocol } from 'electron'
@@ -8,14 +9,25 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 
 // import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
 
+// Process environment variables
 const isDevelopment = process.env.NODE_ENV !== 'production'
+const storagePath = process.env.NODE_STORAGE_PATH || 'userData'
+const storagePathExtra = process.env.NODE_STORAGE_PATH_EXTRA || ''
+const storagePathDatabaseExtra = process.env.NODE_STORAGE_PATH_DATABASE_EXTRA || ''
 
 process.on('unhandledRejection', (error) => {
 	console.error(error)
 })
 
 ipcMain.handle('check-db-exists', () => {
-	return path.join(app.getPath('userData'), './mysqlite.db')
+	let appPath = path.join(app.getPath(storagePath), '.' + storagePathExtra + storagePathDatabaseExtra)
+
+	// Create the app storage directory if it doesn't exist
+	if (!fs.existsSync(appPath)) {
+		fs.mkdirSync(appPath, { recursive: true });
+	}
+
+	return path.join(appPath, './mysqlite.db')
 })
 
 // Scheme must be registered before the app is ready
